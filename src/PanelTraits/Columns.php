@@ -355,6 +355,9 @@ trait Columns
             $columns = $cache[$table];
         } else {
             $columns = $cache[$table] = \Schema::getColumnListing($table);
+            if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel()) {
+                dd($cache[$table]);
+            }
         }
 
         return in_array($name, $columns);

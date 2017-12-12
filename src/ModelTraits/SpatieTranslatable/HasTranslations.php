@@ -40,6 +40,10 @@ trait HasTranslations
 
         return $translation;
     }
+    
+    public function getAttributes(){
+        return $this->getTranslatableAttributes();
+    }
 
     /*
     |--------------------------------------------------------------------------
