@@ -44,6 +44,15 @@ trait HasTranslations
     public function getAttributes(){
         return $this->getTranslatableAttributes();
     }
+    
+    public function isTranslation($key){
+        return $this->isTranslatableAttribute($key);
+    }
+    
+    public function orderTranslationBy($query, $field, $order){
+        return $query;
+        //return $query->orderByRaw('ORDER BY CAST(JSON_EXTRACT(jdoc, \'$.id\') AS UNSIGNED)');
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -50,6 +50,11 @@ trait Query
      */
     public function orderBy($field, $order = 'asc')
     {
+        if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel()) {
+            if ($this->model->isTranslation($field)) {
+                return $this->model->orderTranslationBy($this->query, $field, $order);
+            }
+        }
         return $this->query->orderBy($field, $order);
     }
 

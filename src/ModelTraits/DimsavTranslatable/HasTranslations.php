@@ -44,6 +44,22 @@ trait HasTranslations
     public function getAttributes(){
         return $this->translatedAttributes;
     }
+    
+    public function isTranslation($key){
+        return $this->isTranslationAttribute($key);
+    }
+    
+    public function orderTranslationBy($query, $field, $order){
+        $table = $this->getTable();
+        $ttable = $this->getTranslationsTable();
+        return $this->crud->query->join($ttable . ' as t', function ($join) use ($table) {
+            $join->on($table . '.id', '=', 't.'.$table.'_id')
+                ->where('t.locale', '=', $this->getLocale());
+        })
+        ->groupBy($table . '.id')
+        ->orderBy('t.' . $field, $order)
+        ->with('translations');
+    }
 
     /*
     |--------------------------------------------------------------------------
