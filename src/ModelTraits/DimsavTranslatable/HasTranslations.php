@@ -113,7 +113,12 @@ trait HasTranslations
      */
     public function getAvailableLocales()
     {
-        return $this->getLocales();
+        $locales = $this->getLocales();
+        $locales_ok = [];
+        foreach ($locales as $k => $l) {
+            $locales_ok[$l] = $l;
+        }
+        return $locales_ok;
     }
 
     /**
