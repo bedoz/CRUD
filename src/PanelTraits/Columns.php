@@ -356,7 +356,7 @@ trait Columns
         } else {
             $columns = $cache[$table] = \Schema::getColumnListing($table);
             if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel()) {
-                dd($cache[$table]);
+                $columns = $cache[$table] = array_merge($cache[$table], $this->model->getAttributes());
             }
         }
 
