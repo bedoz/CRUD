@@ -52,7 +52,7 @@ trait HasTranslations
     public function orderTranslationBy($query, $field, $order){
         $table = $this->getTable();
         $ttable = $this->getTranslationsTable();
-        return $this->crud->query->join($ttable . ' as t', function ($join) use ($table) {
+        return $query->join($ttable . ' as t', function ($join) use ($table) {
             $join->on($table . '.id', '=', 't.'.$table.'_id')
                 ->where('t.locale', '=', $this->getLocale());
         })
