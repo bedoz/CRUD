@@ -56,6 +56,7 @@ trait HasTranslations
             $join->on($table . '.id', '=', 't.'.$table.'_id')
                 ->where('t.locale', '=', $this->getLocale());
         })
+        ->select($table.'.id')
         ->groupBy($table . '.id')
         ->orderBy('t.' . $field, $order)
         ->with('translations');
