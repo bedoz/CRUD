@@ -61,6 +61,18 @@ trait HasTranslations
         ->orderBy('t.' . $field, $order)
         ->with('translations');
     }
+    
+    public function addTranslationJoin($query){
+        $table = $this->getTable();
+        $ttable = $this->getTranslationsTable();
+        return $query->join($ttable . ' as t', function ($join) use ($table) {
+            $join->on($table . '.id', '=', 't.'.$table.'_id')
+                ->where('t.locale', '=', $this->getLocale());
+        })
+        ->select($table.'.id')
+        ->groupBy($table . '.id')
+        ->with('translations');
+    }
 
     /*
     |--------------------------------------------------------------------------

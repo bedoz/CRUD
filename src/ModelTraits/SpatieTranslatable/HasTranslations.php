@@ -53,6 +53,10 @@ trait HasTranslations
         return $query;
         //return $query->orderByRaw('ORDER BY CAST(JSON_EXTRACT(jdoc, \'$.id\') AS UNSIGNED)');
     }
+    
+    public function addTranslationJoin($query){
+        return $query;
+    }
 
     /*
     |--------------------------------------------------------------------------
