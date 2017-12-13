@@ -50,16 +50,8 @@ trait HasTranslations
     }
     
     public function orderTranslationBy($query, $field, $order){
-        $table = $this->getTable();
-        $ttable = $this->getTranslationsTable();
-        return $query->join($ttable . ' as t', function ($join) use ($table) {
-            $join->on($table . '.id', '=', 't.'.$table.'_id')
-                ->where('t.locale', '=', $this->getLocale());
-        })
-        ->select($table.'.id')
-        ->groupBy($table . '.id')
-        ->orderBy('t.' . $field, $order)
-        ->with('translations');
+        $query = $this->addTranslationJoin($query);
+        return $query->orderBy('t.' . $field, $order);
     }
     
     public function addTranslationJoin($query){
