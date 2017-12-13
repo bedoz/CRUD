@@ -65,7 +65,7 @@ trait HasTranslations
     public function addTranslationJoin($query){
         $table = $this->getTable();
         $ttable = $this->getTranslationsTable();
-        foreach($query->joins as $JoinClause) {
+        foreach($query->getQuery()->joins as $JoinClause) {
             if($JoinClause->table == $ttable) {
                 return $query;
             }
