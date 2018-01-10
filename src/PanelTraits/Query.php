@@ -107,9 +107,9 @@ trait Query
      */
     public function count()
     {
-        if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel()) {
+        /*if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel()) {
             $this->query = $this->model->addTranslationJoin($this->query);
-        }
+        }*/
         return $this->query->count();
     }
 }
