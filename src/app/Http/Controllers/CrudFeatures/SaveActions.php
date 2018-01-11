@@ -13,6 +13,11 @@ trait SaveActions
     {
         $saveAction = session('save_action', config('backpack.crud.default_save_action', 'save_and_back'));
         $saveOptions = $this->crud->actions;
+        
+        if (!isset($saveOptions[$saveAction])) {
+            $saveAction = config('backpack.crud.default_save_action', 'save_and_back');
+        }
+        
         $saveCurrent = [
             'value' => $saveAction,
             'label' => $this->getSaveActionButtonName($saveAction),
@@ -22,7 +27,7 @@ trait SaveActions
             if ($saveAction == $key) {
                 unset($saveOptions[$key]);
             } else {
-                $saveOptions[$key] = $this->getSaveActionButtonName($key);
+                $saveOptions[$key] = $this->getSaveActionButtonName($key, $value);
             }
         }
 
@@ -72,9 +77,10 @@ trait SaveActions
                 }
                 break;
             case 'save_and_back':
-            default:
                 $redirectUrl = $this->crud->route;
                 break;
+            default:
+                $redirectUrl = $this->crud->actions_url[$saveAction];
         }
 
         return \Redirect::to($redirectUrl);
@@ -82,12 +88,12 @@ trait SaveActions
 
     /**
      * Get the translated text for the Save button.
-     * @param  string $actionValue [description]
+     * @param  string $actionKey [description]
      * @return [type]              [description]
      */
-    private function getSaveActionButtonName($actionValue = 'save_and_back')
+    private function getSaveActionButtonName($actionKey = 'save_and_back', $label = 'backpack::crud.save_action_save_and_back')
     {
-        switch ($actionValue) {
+        switch ($actionKey) {
             case 'save_and_edit':
                 return trans('backpack::crud.save_action_save_and_edit');
                 break;
@@ -95,9 +101,10 @@ trait SaveActions
                 return trans('backpack::crud.save_action_save_and_new');
                 break;
             case 'save_and_back':
-            default:
                 return trans('backpack::crud.save_action_save_and_back');
                 break;
+            default:
+                return trans($label);
         }
     }
 }

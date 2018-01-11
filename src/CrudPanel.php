@@ -46,6 +46,7 @@ class CrudPanel
     public $access = ['list', 'create', 'update', 'delete'/* 'revisions', reorder', 'show', 'details_row' */];
     
     public $actions = ['save_and_back' => '', 'save_and_edit' => '', 'save_and_new' => ''];
+    public $actions_url = ['save_and_back' => '', 'save_and_edit' => '', 'save_and_new' => ''];
 
     public $reorder = false;
     public $reorder_label = false;
