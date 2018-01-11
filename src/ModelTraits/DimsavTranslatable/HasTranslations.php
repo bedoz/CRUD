@@ -19,15 +19,13 @@ trait HasTranslations
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * Use the forced locale if present.
-     *
-     * @param string $key
-     * @return mixed
-     */
+    public function isTranslation($key){
+        return $this->isTranslationAttribute($key);
+    }
+    
     public function getAttributeValue($key)
     {
-        if (! $this->isTranslationAttribute($key)) {
+        if (! $this->isTranslation($key)) {
             return parent::getAttributeValue($key);
         }
 
@@ -41,13 +39,9 @@ trait HasTranslations
         return $translation;
     }
     
-    public function getAttributes(){
+    /*public function getAttributes(){
         return $this->translatedAttributes;
-    }
-    
-    public function isTranslation($key){
-        return $this->isTranslationAttribute($key);
-    }
+    }*/
     
     public function orderTranslationBy($query, $field, $order){
         $query = $this->addTranslationJoin($query);
