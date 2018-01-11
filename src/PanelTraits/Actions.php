@@ -11,9 +11,7 @@ trait Actions {
         return $this->actions = array_diff_key($this->actions, $action);
     }
     
-    public function addAction($action){
-        $action = (array)$action;
-        $action = array_flip($action);
+    public function addAction(array $action){
         return $this->actions = array_merge($this->actions, $action);
     }
 }
