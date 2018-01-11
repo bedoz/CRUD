@@ -20,7 +20,7 @@ trait SaveActions
         
         $saveCurrent = [
             'value' => $saveAction,
-            'label' => $this->getSaveActionButtonName($saveAction),
+            'label' => $this->getSaveActionButtonName($saveAction, $saveOptions[$saveAction]),
         ];
 
         foreach ($saveOptions as $key => $value) {
