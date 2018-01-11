@@ -12,26 +12,18 @@ trait SaveActions
     public function getSaveAction()
     {
         $saveAction = session('save_action', config('backpack.crud.default_save_action', 'save_and_back'));
-        $saveOptions = [];
+        $saveOptions = $this->crud->actions;
         $saveCurrent = [
             'value' => $saveAction,
             'label' => $this->getSaveActionButtonName($saveAction),
         ];
 
-        switch ($saveAction) {
-            case 'save_and_edit':
-                $saveOptions['save_and_back'] = $this->getSaveActionButtonName('save_and_back');
-                $saveOptions['save_and_new'] = $this->getSaveActionButtonName('save_and_new');
-                break;
-            case 'save_and_new':
-                $saveOptions['save_and_back'] = $this->getSaveActionButtonName('save_and_back');
-                $saveOptions['save_and_edit'] = $this->getSaveActionButtonName('save_and_edit');
-                break;
-            case 'save_and_back':
-            default:
-                $saveOptions['save_and_edit'] = $this->getSaveActionButtonName('save_and_edit');
-                $saveOptions['save_and_new'] = $this->getSaveActionButtonName('save_and_new');
-                break;
+        foreach ($saveOptions as $key => $value) {
+            if ($saveAction == $key) {
+                unset($saveOptions[$key]);
+            } else {
+                $saveOptions[$key] = $this->getSaveActionButtonName($key);
+            }
         }
 
         return [
