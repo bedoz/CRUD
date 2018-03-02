@@ -55,7 +55,14 @@ trait Search
                 case 'date':
                 case 'datetime':
                 case 'text':
-                    $query->orWhere($column['name'], 'like', '%'.$searchTerm.'%');
+                    if ($this->model->isTranslation($column['name'])) {
+                        $query->orWhereHas('translations', function ($q) use ($column, $searchTerm) {
+                            $q->where('locale', \App::getLocale())
+                            ->where($column['name'], 'like', '%'.$searchTerm.'%');
+                        });
+                    } else {
+                        $query->orWhere($column['name'], 'like', '%'.$searchTerm.'%');
+                    }
                     break;
 
                 case 'select':
