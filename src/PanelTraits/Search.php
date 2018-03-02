@@ -55,7 +55,7 @@ trait Search
                 case 'date':
                 case 'datetime':
                 case 'text':
-                    if ($this->model->isTranslation($column['name'])) {
+                    if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel() && $this->model->isTranslation($column['name'])) {
                         $query->orWhereHas('translations', function ($q) use ($column, $searchTerm) {
                             $q->where('locale', \App::getLocale())
                             ->where($column['name'], 'like', '%'.$searchTerm.'%');
