@@ -110,6 +110,6 @@ trait Query
         if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel()) {
             $this->query = $this->model->addTranslationJoin($this->query);
         }
-        return $this->query->count();
+        return $this->query->get()->count();
     }
 }
