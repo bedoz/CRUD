@@ -58,7 +58,7 @@ trait HasTranslations
                 }
             }
         }
-        return $query->join($ttable . ' as t', function ($join) use ($table) {
+        return $query->leftJoin($ttable . ' as t', function ($join) use ($table) {
             $join->on($table . '.id', '=', 't.'.$table.'_id')
                 ->where('t.locale', '=', $this->getLocale());
         })
