@@ -20,6 +20,81 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.4.4] - 2018-03-29
+
+## Fixed
+- ckeditor button now showing after js update; merges #1310; fixes #1309;
+
+
+## [3.4.3] - 2018-03-28
+
+## Fixed
+- model_function column HTML was escaped;
+
+
+## [3.4.2] - 2018-03-23
+
+## Fixed
+- CrudPanelCreateTest failing 1 test;
+
+
+## [3.4.1] - 2018-03-22
+
+## Fixed
+- HUGE ERROR whereby entities could not be created if they had zero relationships;
+
+
+## [3.4.0] - 2018-03-22
+
+## Added
+- one-line installation command ```php artisan backpack:crud:install```;
+- 1-1 relatiosnhips; merges #865;
+
+## Fixed
+- ```checkbox``` field was using the default value over the DB value on edit; merges #1239;
+- no longer registering Base, Elfinder and Image service providers and aliases, since they all now use auto-load; merges #1279;
+- datatables responsive working with colvis and export buttons;
+
+### Removed
+- elFinder is no longer a dependency; users should require it themselves, if they need it;
+
+-----------
+
+## [3.3.17] - 2018-03-21
+
+## Fixed
+- changed Sluggable traits declarations to PHP 7+; merges #1084;
+
+
+## [3.3.16] - 2018-03-21
+
+## Added
+- JSON response if the create/update action is triggered through AJAX; merges #1249;
+- ```view``` filter type and ```view``` column type;
+
+## Fixed
+- Romanian translation;
+- image field did not show proper image if validation failed; merges #1294;
+
+## [3.3.15] - 2018-03-21
+
+## Fixed
+- ```select2_multiple``` filter triggered an error when the entire selection was removed - merges #824;
+- fr translation;
+- zh-hant translation;
+
+
+## [3.3.14] - 2018-03-16
+
+## Added
+- ```select_all``` option to the ```select2_multiple``` field - merged #1206;
+- ```browse_multiple``` field type, thanks to [chancezeus](https://github.com/chancezeus) - merged #1034;
+
+## Fixed
+- ```date_range``` filter methods now have custom names, so that more than one ```date_range``` filter can be included in one CRUD list;
+- Romanian translation;
+- Create/Update form will not show certain buttons, if that operation is disabled - merged #679;
+
 ## [3.3.13] - 2018-03-15
 
 ## Fixed

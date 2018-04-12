@@ -23,6 +23,11 @@
         @endif
     </select>
 
+    @if(isset($field['select_all']) && $field['select_all'])
+        <a class="btn btn-xs btn-default select_all" style="margin-top: 5px;"><i class="fa fa-check-square-o"></i> {{ trans('backpack::crud.select_all') }}</a>
+        <a class="btn btn-xs btn-default clear" style="margin-top: 5px;"><i class="fa fa-times"></i> {{ trans('backpack::crud.clear') }}</a>
+    @endif
+
     {{-- HINT --}}
     @if (isset($field['hint']))
         <p class="help-block">{!! $field['hint'] !!}</p>
@@ -38,23 +43,39 @@
     {{-- FIELD CSS - will be loaded in the after_styles section --}}
     @push('crud_fields_styles')
         <!-- include select2 css-->
-        <link href="{{ asset('vendor/adminlte/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('vendor/adminlte/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
     @endpush
 
     {{-- FIELD JS - will be loaded in the after_scripts section --}}
     @push('crud_fields_scripts')
         <!-- include select2 js-->
-        <script src="{{ asset('vendor/adminlte/plugins/select2/select2.min.js') }}"></script>
+        <script src="{{ asset('vendor/adminlte/bower_components/select2/dist/js/select2.min.js') }}"></script>
         <script>
             jQuery(document).ready(function($) {
                 // trigger select2 for each untriggered select2_multiple box
                 $('.select2_multiple').each(function (i, obj) {
                     if (!$(obj).hasClass("select2-hidden-accessible"))
                     {
-                        $(obj).select2({
+                        var $obj = $(obj).select2({
                             theme: "bootstrap"
                         });
+
+                        var options = [];
+                        @if (isset($field['model']))
+                            @foreach ($field['model']::all() as $connected_entity_entry)
+                                options.push({{ $connected_entity_entry->getKey() }});
+                            @endforeach
+                        @endif
+
+                        @if(isset($field['select_all']) && $field['select_all'])
+                            $(obj).parent().find('.clear').on("click", function () {
+                                $obj.val([]).trigger("change");
+                            });
+                            $(obj).parent().find('.select_all').on("click", function () {
+                                $obj.val(options).trigger("change");
+                            });
+                        @endif
                     }
                 });
             });
