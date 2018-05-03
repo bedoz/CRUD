@@ -20,6 +20,25 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.4.5] - 2018-05-01
+
+## Fixed
+- LV translation, thanks to @tomsb; merges #1358;
+
+
+## [3.4.6] - 2018-04-23
+
+## Fixed
+- added TD around columns in preview, to fix it; merges #1344;
+- not showing "Remove filters" button when no filter is applied; merges #1343;
+
+## [3.4.5] - 2018-04-17
+
+## Fixed
+- getting the correct current id for nested resources; fixes #1323; fixes #252; merges #1339;
+- #1321 - setting locale for traversable items; merges #1330;
+
+
 ## [3.4.4] - 2018-03-29
 
 ## Fixed
