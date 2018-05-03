@@ -98,6 +98,10 @@ trait SaveActions
                 $redirectUrl = $this->crud->route;
                 break;
         }
+        
+        if ($this->crud->request->query()) {
+            $redirectUrl .= "?" . http_build_query($this->crud->request->query());
+        }
 
         // if the request is AJAX, return a JSON response
         if ($this->request->ajax()) {
