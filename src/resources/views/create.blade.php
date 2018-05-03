@@ -8,7 +8,7 @@
 	  </h1>
 	  <ol class="breadcrumb">
 	    <li><a href="{{ url(config('backpack.base.route_prefix'), 'dashboard') }}">{{ trans('backpack::crud.admin') }}</a></li>
-	    <li><a href="{{ url($crud->route) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
+	    <li><a href="{{ url($crud->route) . "?" . http_build_query($crud->request->query()) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
 	    <li class="active">{{ trans('backpack::crud.add') }}</li>
 	  </ol>
 	</section>
@@ -19,13 +19,13 @@
 	<div class="col-md-8 col-md-offset-2">
 		<!-- Default box -->
 		@if ($crud->hasAccess('list'))
-			<a href="{{ url($crud->route) }}"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
+			<a href="{{ url($crud->route) . "?" . http_build_query($crud->request->query()) }}"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
 		@endif
 
 		@include('crud::inc.grouped_errors')
 
 		  <form method="post"
-		  		action="{{ url($crud->route) }}"
+		  		action="{{ url($crud->route) . "?" . http_build_query($crud->request->query()) }}"
 				@if ($crud->hasUploadFields('create'))
 				enctype="multipart/form-data"
 				@endif

@@ -8,7 +8,7 @@
 	  </h1>
 	  <ol class="breadcrumb">
 	    <li><a href="{{ url(config('backpack.base.route_prefix'),'dashboard') }}">{{ trans('backpack::crud.admin') }}</a></li>
-	    <li><a href="{{ url($crud->route) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
+	    <li><a href="{{ url($crud->route) . "?" . http_build_query($crud->request->query()) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
 	    <li class="active">{{ trans('backpack::crud.edit') }}</li>
 	  </ol>
 	</section>
@@ -19,13 +19,13 @@
 	<div class="col-md-8 col-md-offset-2">
 		<!-- Default box -->
 		@if ($crud->hasAccess('list'))
-			<a href="{{ url($crud->route) }}"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
+			<a href="{{ url($crud->route) . "?" . http_build_query($crud->request->query()) }}"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
 		@endif
 
 		@include('crud::inc.grouped_errors')
 
 		  <form method="post"
-		  		action="{{ url($crud->route.'/'.$entry->getKey()) }}"
+		  		action="{{ url($crud->route.'/'.$entry->getKey()) . "?" . http_build_query($crud->request->query()) }}"
 				@if ($crud->hasUploadFields('update', $entry->getKey()))
 				enctype="multipart/form-data"
 				@endif
@@ -42,7 +42,7 @@
 					  </button>
 					  <ul class="dropdown-menu">
 					  	@foreach ($crud->model->getAvailableLocales() as $key => $locale)
-						  	<li><a href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}?locale={{ $key }}">{{ $locale }}</a></li>
+						  	<li><a href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}?locale={{ $key }}&{{ http_build_query($crud->request->query())}}">{{ $locale }}</a></li>
 					  	@endforeach
 					  </ul>
 					</div>
