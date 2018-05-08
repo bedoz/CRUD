@@ -22,5 +22,5 @@
 
     </div>
 
-    <a href="{{ url($crud->route) }}" class="btn btn-default"><span class="fa fa-ban"></span> &nbsp;{{ trans('backpack::crud.cancel') }}</a>
+    <a href="{{ url($crud->route) . "?" . http_build_query($crud->request->query()) }}" class="btn btn-default"><span class="fa fa-ban"></span> &nbsp;{{ trans('backpack::crud.cancel') }}</a>
 </div>
