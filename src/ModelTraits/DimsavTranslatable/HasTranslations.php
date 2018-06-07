@@ -190,9 +190,13 @@ trait HasTranslations
 
                 if ($translation_locale) {
                     $item = parent::__call($method, $parameters);
-
+                    
                     if ($item) {
-                        $item->setLocale($translation_locale);
+                        try {
+                            $item->setLocale($translation_locale);
+                        } catch (\Exception $e) {
+                            report($e);
+                        }
                     }
 
                     return $item;
