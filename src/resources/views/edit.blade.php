@@ -41,8 +41,9 @@
 					    {{trans('backpack::crud.language')}}: {{ $crud->model->getAvailableLocales()[$crud->request->input('locale')?$crud->request->input('locale'):App::getLocale()] }} <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu">
+                        <?php $querystring = $crud->request->query(); ?>
 					  	@foreach ($crud->model->getAvailableLocales() as $key => $locale)
-						  	<li><a href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}?locale={{ $key }}&{{ http_build_query($crud->request->query())}}">{{ $locale }}</a></li>
+							<li><a href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}?{{ http_build_query(array_merge($querystring, array("locale" => $key)))}}">{{ $locale }}</a></li>
 					  	@endforeach
 					  </ul>
 					</div>
