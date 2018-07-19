@@ -1,11 +1,13 @@
 <?php
 
-namespace Backpack\CRUD\app\Http\Controllers\CrudFeatures;
+namespace Backpack\CRUD\app\Http\Controllers\Operations;
 
 trait SaveActions
 {
     /**
      * Get save actions, with pre-selected action from stored session variable or config fallback.
+     *
+     * TODO: move this to the CrudPanel object; They don't belong in controllers;
      *
      * @return array
      */
@@ -89,9 +91,13 @@ trait SaveActions
                 break;
             case 'save_and_edit':
                 $redirectUrl = $this->crud->route.'/'.$itemId.'/edit';
+                if (\Request::has('current_tab')) {
+                    $redirectUrl = $redirectUrl.'#'.\Request::get('current_tab');
+                }
                 if (\Request::has('locale')) {
                     $redirectUrl .= '?locale='.\Request::input('locale');
                 }
+
                 break;
             case 'save_and_back':
             default:

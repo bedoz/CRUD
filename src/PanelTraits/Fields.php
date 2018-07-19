@@ -157,6 +157,48 @@ trait Fields
     }
 
     /**
+     * Remove all fields from the create/update/both forms.
+     *
+     * @param string $form           update/create/both
+     */
+    public function removeAllFields($form = 'both')
+    {
+        $current_fields = $this->getCurrentFields();
+        if (! empty($current_fields)) {
+            foreach ($current_fields as $field) {
+                $this->removeField($field['name'], $form);
+            }
+        }
+    }
+
+    /**
+     * Update value of a given key for a current field.
+     *
+     * @param string $field         The field
+     * @param array  $modifications An array of changes to be made.
+     * @param string $form          update/create/both
+     */
+    public function modifyField($field, $modifications, $form = 'both')
+    {
+        foreach ($modifications as $key => $newValue) {
+            switch (strtolower($form)) {
+          case 'create':
+              $this->create_fields[$field][$key] = $newValue;
+              break;
+
+          case 'update':
+              $this->update_fields[$field][$key] = $newValue;
+              break;
+
+          default:
+              $this->create_fields[$field][$key] = $newValue;
+              $this->update_fields[$field][$key] = $newValue;
+              break;
+        }
+        }
+    }
+
+    /**
      * Set label for a specific field.
      *
      * @param string $field

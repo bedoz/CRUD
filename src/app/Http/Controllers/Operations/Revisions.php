@@ -1,6 +1,6 @@
 <?php
 
-namespace Backpack\CRUD\app\Http\Controllers\CrudFeatures;
+namespace Backpack\CRUD\app\Http\Controllers\Operations;
 
 trait Revisions
 {
@@ -42,9 +42,6 @@ trait Revisions
     public function restoreRevision($id)
     {
         $this->crud->hasAccessOrFail('revisions');
-
-        // get entry ID from Request (makes sure its the last ID for nested resources)
-        $id = $this->crud->getCurrentEntryId() ?? $id;
 
         $revisionId = \Request::input('revision_id', false);
         if (! $revisionId) {
