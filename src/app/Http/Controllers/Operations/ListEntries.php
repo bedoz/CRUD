@@ -54,11 +54,14 @@ trait ListEntries
             foreach ($this->request->input('order') as $order) {
                 $column_number = $order['column'];
                 $column_direction = $order['dir'];
-                $column = $this->crud->findColumnById($column_number);
-    
-                if ($column['tableColumn']) {
-                    // apply the current orderBy rules
-                    $this->crud->orderBy($column['name'], $column_direction);
+                if (is_numeric($column_number)) {
+                    $column = $this->crud->findColumnById($column_number);
+                    if ($column['tableColumn']) {
+                        // apply the current orderBy rules
+                        $this->crud->orderBy($column['name'], $column_direction);
+                    }
+                } else {
+                    $this->crud->orderBy($column_number, $column_direction);
                 }
             }
         }
