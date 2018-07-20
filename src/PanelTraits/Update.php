@@ -99,6 +99,6 @@ trait Update
             }
         }
 
-        return property_exists($model, $field['name'])?$model->{$field['name']}:"";
+        return $model->{$field['name']};
     }
 }
