@@ -57,8 +57,12 @@ trait Update
         }
 
         // update the row in the db
-        $item = $this->crud->update($request->get($this->crud->model->getKeyName()),
-                            $request->except('save_action', '_token', '_method', 'current_tab'));
+        $item = $this->crud->update(
+            $request->input($this->crud->model->getKeyName()),
+            collect($request->post())
+                ->except(['save_action', '_token', '_method', 'current_tab'])
+                ->toArray()
+        );
         $this->data['entry'] = $this->crud->entry = $item;
 
         // show a success message
