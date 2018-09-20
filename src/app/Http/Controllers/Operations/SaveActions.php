@@ -108,7 +108,7 @@ trait SaveActions
         if ($this->crud->request->query()) {
             $redirectUrl = parse_url($redirectUrl);
             $result = $this->crud->request->query();
-            if ($redirectUrl['query'] != null) {
+            if (isset($redirectUrl['query']) && $redirectUrl['query'] != null) {
                 parse_str($redirectUrl['query'], $output);
                 $result = array_merge($output, $result);
             }
