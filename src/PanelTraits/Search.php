@@ -67,6 +67,7 @@ trait Search
                 case 'date':
                 case 'datetime':
                 case 'text':
+                case 'textarea':
                     if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel() && $this->model->isTranslation($column['name'])) {
                         $query->orWhereHas('translations', function ($q) use ($column, $searchTerm) {
                             $q->where('locale', \App::getLocale())

@@ -20,6 +20,50 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.4.41] - 2018-11-14
+
+## Added
+- #1592 - ```options``` attribute to let developers customize ckeditor;
+
+
+## [3.4.40] - 2018-11-11
+
+### Added
+- #1587 - support for temporaryUrl to upload field type;
+- #1693 - Turkish language translations;
+
+
+### Removed
+- obsolete TODO time_picker field; never used;
+
+
+## [3.4.39] - 2018-11-09
+
+### Fixed
+- #1540 fixes #1539 - what happens if actions don't exist because the controller is overwritten;
+- fixes #1678 - ```textarea``` column type has default search logic;
+- fixes #1676 - pagination in ```select2_from_ajax``` and ```select2_from_ajax_multiple``` fields;
+- fixes #509 using #1689 - assets got loaded twice if using tabs;
+- fixes #1421 using #1690 - user can now clear inputs, receive validation error and inputs will still be cleared;
+
+
+## [3.4.38] - 2018-10-26
+
+### Added
+- "default" for select field type;
+
+### Fixed
+- merged #1651 fixes #1640 - column width when resizing window or sidebar, on unresponsive crud table;
+- fixed #1648 - select_from_array column can now display multiple entries;
+
+
+## [3.4.37] - 2018-10-24
+
+### Fixed
+- spanish translation;
+- updated datetimepicker version in ```datetime_picker``` field;
+
+
 ## [3.4.36] - 2018-10-15
 
 ### Fixed
