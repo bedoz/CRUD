@@ -2,7 +2,7 @@
 
 namespace Backpack\CRUD\app\Http\Controllers\Operations;
 
-trait ListEntries
+trait ListOperation
 {
     /**
      * Display all rows in the database for this entity.
@@ -12,9 +12,10 @@ trait ListEntries
     public function index()
     {
         $this->crud->hasAccessOrFail('list');
+        $this->crud->setOperation('list');
 
         $this->data['crud'] = $this->crud;
-        $this->data['title'] = ucfirst($this->crud->entity_name_plural);
+        $this->data['title'] = $this->crud->getTitle() ?? mb_ucfirst($this->crud->entity_name_plural);
 
         // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
         return view($this->crud->getListView(), $this->data);
@@ -28,8 +29,10 @@ trait ListEntries
     public function search()
     {
         $this->crud->hasAccessOrFail('list');
+        $this->crud->setOperation('list');
 
-        $totalRows = $filteredRows = $this->crud->count();
+        $totalRows = $this->crud->model->count();
+        $filteredRows = $this->crud->count();
         $startIndex = $this->request->input('start') ?: 0;
         // if a search term was present
         if ($this->request->input('search') && $this->request->input('search')['value']) {
@@ -48,6 +51,19 @@ trait ListEntries
         }
         // overwrite any order set in the setup() method with the datatables order
         if ($this->request->input('order')) {
+            $column_number = $this->request->input('order')[0]['column'];
+            $column_direction = $this->request->input('order')[0]['dir'];
+            $column = $this->crud->findColumnById($column_number);
+            if ($column['tableColumn']) {
+                // clear any past orderBy rules
+                $this->crud->query->getQuery()->orders = null;
+                // apply the current orderBy rules
+                $this->crud->query->orderBy($column['name'], $column_direction);
+            }
+
+            // check for custom order logic in the column definition
+            if (isset($column['orderLogic'])) {
+                $this->crud->customOrderBy($column, $column_direction);
             // clear any past orderBy rules
             $this->crud->query->getQuery()->orders = null;
             
@@ -84,6 +100,7 @@ trait ListEntries
     public function showDetailsRow($id)
     {
         $this->crud->hasAccessOrFail('details_row');
+        $this->crud->setOperation('list');
 
         // get entry ID from Request (makes sure its the last ID for nested resources)
         $id = $this->crud->getCurrentEntryId() ?? $id;

@@ -51,12 +51,42 @@ trait Query
      */
     public function orderBy($field, $order = 'asc')
     {
+        if ($this->request->has('order')) {
+            return $this->query;
+        }
+
         if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel()) {
             if ($this->model->isTranslation($field)) {
                 return $this->model->orderTranslationBy($this->query, $field, $order);
             }
         }
+        
         return $this->query->orderBy($field, $order);
+    }
+
+    /**
+     * Order results of the query in a custom way.
+     *
+     * @param  array $column           Column array with all attributes
+     * @param  string $column_direction ASC or DESC
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function customOrderBy($column, $columnDirection = 'asc')
+    {
+        if (! isset($column['orderLogic'])) {
+            return $this->query;
+        }
+
+        $this->query->getQuery()->orders = null;
+
+        $orderLogic = $column['orderLogic'];
+
+        if (is_callable($orderLogic)) {
+            return $orderLogic($this->query, $column, $columnDirection);
+        }
+
+        return $this->query;
     }
 
     /**

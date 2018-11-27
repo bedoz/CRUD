@@ -58,6 +58,16 @@ class CrudRouter
             'as' => 'crud.'.$this->name.'.restoreRevision',
             'uses' => $this->controller.'@restoreRevision',
         ]);
+
+        Route::post($this->name.'/{id}/clone', [
+            'as' => 'crud.'.$this->name.'.clone',
+            'uses' => $this->controller.'@clone',
+        ]);
+
+        Route::post($this->name.'/bulk-clone', [
+            'as' => 'crud.'.$this->name.'.bulkClone',
+            'uses' => $this->controller.'@bulkClone',
+        ]);
     }
 
     /**
