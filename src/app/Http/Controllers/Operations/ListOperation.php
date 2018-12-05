@@ -53,7 +53,7 @@ trait ListOperation
         if ($this->request->input('order')) {
             // clear any past orderBy rules
             $this->crud->query->getQuery()->orders = null;
-            
+
             foreach ($this->request->input('order') as $order) {
                 $column_number = $order['column'];
                 $column_direction = $order['dir'];
@@ -67,10 +67,11 @@ trait ListOperation
                     $this->crud->orderBy($column_number, $column_direction);
                 }
             }
-            
+
             // check for custom order logic in the column definition
-            if (isset($column['orderLogic']))
+            if (isset($column['orderLogic'])) {
                 $this->crud->customOrderBy($column, $column_direction);
+            }
         }
         $entries = $this->crud->getEntries();
 

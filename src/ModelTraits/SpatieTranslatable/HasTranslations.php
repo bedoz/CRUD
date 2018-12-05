@@ -40,21 +40,25 @@ trait HasTranslations
 
         return $translation;
     }
-    
-    public function getAttributes(){
+
+    public function getAttributes()
+    {
         return $this->getTranslatableAttributes();
     }
-    
-    public function isTranslation($key){
+
+    public function isTranslation($key)
+    {
         return $this->isTranslatableAttribute($key);
     }
-    
-    public function orderTranslationBy($query, $field, $order){
+
+    public function orderTranslationBy($query, $field, $order)
+    {
         return $query;
         //return $query->orderByRaw('ORDER BY CAST(JSON_EXTRACT(jdoc, \'$.id\') AS UNSIGNED)');
     }
-    
-    public function addTranslationJoin($query){
+
+    public function addTranslationJoin($query)
+    {
         return $query;
     }
 

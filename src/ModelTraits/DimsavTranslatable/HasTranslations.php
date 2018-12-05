@@ -71,6 +71,7 @@ trait HasTranslations
     public function orderTranslationBy($query, $field, $order)
     {
         $query = $this->addTranslationJoin($query);
+
         return $query->orderBy('t.'.$field, $order);
     }
 
@@ -85,12 +86,13 @@ trait HasTranslations
                 }
             }
         }
+
         return $query->leftJoin($ttable.' as t', function ($join) use ($table) {
             $join->on($table.'.id', '=', 't.'.$table.'_id')
                 ->where('t.locale', '=', $this->getLocale());
         })
         ->select($table.'.*')
-        ->groupBy($table . '.id')
+        ->groupBy($table.'.id')
         ->with('translations');
     }
 
@@ -171,6 +173,7 @@ trait HasTranslations
         foreach ($locales as $k => $l) {
             $locales_ok[$l] = $l;
         }
+
         return $locales_ok;
     }
 

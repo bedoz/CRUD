@@ -60,7 +60,7 @@ trait Query
                 return $this->model->orderTranslationBy($this->query, $field, $order);
             }
         }
-        
+
         return $this->query->orderBy($field, $order);
     }
 
@@ -146,6 +146,7 @@ trait Query
         if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel()) {
             $this->query = $this->model->addTranslationJoin($this->query);
         }
+
         return $this->query->get()->count();
     }
 }
