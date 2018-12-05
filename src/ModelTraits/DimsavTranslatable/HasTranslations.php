@@ -151,6 +151,11 @@ trait HasTranslations
     |--------------------------------------------------------------------------
     */
 
+    public function setTranslation($attribute, $locale, $value)
+    {
+        $this->translate($locale)->$attribute = $value;
+    }
+
     /**
      * Check if a model is translatable, by the adapter's standards.
      *
