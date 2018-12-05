@@ -112,7 +112,7 @@ trait SaveActions
                 parse_str($redirectUrl['query'], $output);
                 $result = array_merge($output, $result);
             }
-            $redirectUrl = $redirectUrl['path']."?".http_build_query($result);
+            $redirectUrl = $redirectUrl['path'].'?'.http_build_query($result);
         }
 
         // if the request is AJAX, return a JSON response

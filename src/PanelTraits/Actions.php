@@ -1,4 +1,5 @@
 <?php
+
 namespace Backpack\CRUD\PanelTraits;
 
 trait Actions
