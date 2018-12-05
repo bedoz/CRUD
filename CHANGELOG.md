@@ -20,6 +20,21 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.5.10] - 2018-12-05
+
+- merged #1741 - deprecated ```CrudRequest``` uses ```backpack_auth()```;
+- upgraded PHPUnit to v7;
+
+
+## [3.5.9] - 2018-09-28
+
+- fixed #1732 - added support for laravel/translatable 3.x;
+
+
+## [3.5.8] - 2018-09-28
+
+- fixed #1730 - export buttons causing issues; broken list view;
+
 ## [3.5.7] - 2018-09-27
 
 - fixed #1730 - filtered list view count wasn't quite right;
