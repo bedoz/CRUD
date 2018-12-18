@@ -2,6 +2,9 @@
 
 namespace Backpack\CRUD\PanelTraits;
 
+use Validator;
+use Carbon\Carbon;
+
 trait Search
 {
     /*
@@ -65,8 +68,6 @@ trait Search
         if ($column['tableColumn']) {
             switch ($columnType) {
                 case 'email':
-                case 'date':
-                case 'datetime':
                 case 'text':
                 case 'textarea':
                     if (method_exists($this->model, 'translationEnabledForModel') && $this->model->translationEnabledForModel() && $this->model->isTranslation($column['name'])) {
@@ -77,6 +78,17 @@ trait Search
                     } else {
                         $query->orWhere($column['name'], 'like', '%'.$searchTerm.'%');
                     }
+                    break;
+
+                case 'date':
+                case 'datetime':
+                    $validator = Validator::make(['value' => $searchTerm], ['value' => 'date']);
+
+                    if ($validator->fails()) {
+                        break;
+                    }
+
+                    $query->orWhereDate($column['name'], Carbon::parse($searchTerm));
                     break;
 
                 case 'select':
