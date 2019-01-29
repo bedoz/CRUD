@@ -20,6 +20,16 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.5.14] - 2019-02-24
+
+### Added
+- #1749 - ```$crud->getFilter('name')``` and ```$crud->hasActiveFilter('name')``` methods for Filters;
+
+### Fixed
+- #1792 - javascript error on Show page, due to Clone button;
+- #1790 - DE translation;
+- #1777 - back button; PT translation;
+
 
 ## [3.5.13] - 2019-01-07
 

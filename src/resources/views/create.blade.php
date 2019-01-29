@@ -16,7 +16,7 @@
 
 @section('content')
 @if ($crud->hasAccess('list'))
-	<a href="{{ starts_with(URL::previous(), url($crud->route)) ? URL::previous() : url($crud->route) . "?" . http_build_query($crud->request->query()) }}" class="hidden-print"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a>
+	<a href="{{ url($crud->route) . "?" . http_build_query($crud->request->query()) }}" class="hidden-print"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a>
 @endif
 
 <div class="row m-t-20">

@@ -16,7 +16,7 @@
 
 @section('content')
 @if ($crud->hasAccess('list'))
-	<a href="{{ starts_with(URL::previous(), url($crud->route)) ? URL::previous() : url($crud->route) . "?" . http_build_query($crud->request->query()) }}" class="hidden-print"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a>
+	<a href="{{ url($crud->route) . "?" . http_build_query($crud->request->query()) }}" class="hidden-print"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a>
 @endif
 
 <div class="row m-t-20">
@@ -42,10 +42,10 @@
 				    {{trans('backpack::crud.language')}}: {{ $crud->model->getAvailableLocales()[$crud->request->input('locale')?$crud->request->input('locale'):App::getLocale()] }} &nbsp; <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
-                    <?php $querystring = $crud->request->query(); ?>
-				  	@foreach ($crud->model->getAvailableLocales() as $key => $locale)
-					  	<li><a href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}?{{ http_build_query(array_merge($querystring, array("locale" => $key)))}}">{{ $locale }}</a></li>
-				  	@endforeach
+              <?php $querystring = $crud->request->query(); ?>
+				  	  @foreach ($crud->model->getAvailableLocales() as $key => $locale)
+					  	  <li><a href="{{ url($crud->route.'/'.$entry->getKey().'/edit') }}?{{ http_build_query(array_merge($querystring, array("locale" => $key)))}}">{{ $locale }}</a></li>
+				  	  @endforeach
 				  </ul>
 				</div>
 		    </div>
