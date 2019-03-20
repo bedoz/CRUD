@@ -20,7 +20,45 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
-## [3.5.15] - 2019-02-xx
+## [3.6.6] - 2019-03-13
+
+### Fixed
+- #1801 - for CRUDs, you can now use entity names that happen to be the same as variables that are already in every request;
+- #1563 - allow using database prefix with AutoSet;
+
+### Added
+- merged #1782 - adds unofficial MongoDB support; with a few caveats: all columns are nullable; hasColumn() will always return true - so accidentally adding a column twice will be a bad experience for the developer;
+- #1818 - ```limit``` attribute to the ```select``` column; defaults to 50;
+
+## [3.6.5] - 2019-03-12
+
+### Fixed
+- merged #1830 - ```fire()``` function is not defined in the loaded Dispatcher and throws an error when using sluggables in translatable CRUDs;
+
+
+## [3.6.4] - 2019-03-03
+
+### Fixed
+- ```view``` field type now works with PHP 7.3 (it did not, because of ```compact()``` usage); merged #1825;
+- merged #1804 - fixes ```select_grouped``` field for some people;
+
+
+## [3.6.3] - 2019-03-01
+
+### Fixed
+- unit tests on Laravel 5.8;
+
+
+## [3.6.2] - 2019-03-01
+
+### Fixed
+- date and datetime columns now using carbon v2;
+
+
+## [3.6.1] - 2019-03-01
+
+### Added
+- support for Laravel 5.8 through Base 1.1;
 
 ### Fixed
 - Italian translation, thanks to [Roberto Butti](https://github.com/roberto-butti);
