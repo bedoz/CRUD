@@ -79,6 +79,7 @@ trait HasTranslations
     {
         $table = $this->getTable();
         $ttable = $this->getTranslationsTable();
+        $relationKey = $this->getRelationKey();
         if ($query->getQuery()->joins) {
             foreach ($query->getQuery()->joins as $JoinClause) {
                 if ($JoinClause->table == $ttable.' as t') {
@@ -87,8 +88,8 @@ trait HasTranslations
             }
         }
 
-        return $query->leftJoin($ttable.' as t', function ($join) use ($table) {
-            $join->on($table.'.id', '=', 't.'.$table.'_id')
+        return $query->leftJoin($ttable.' as t', function ($join) use ($table, $relationKey) {
+            $join->on($table.'.id', '=', 't.'.$relationKey)
                 ->where('t.locale', '=', $this->getLocale());
         })
         ->select($table.'.*')
