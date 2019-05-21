@@ -42,7 +42,7 @@ trait HasTranslations
 
     public function getAttribute($key)
     {
-        list($attribute, $locale) = $this->getAttributeAndLocale($key);
+        [$attribute, $locale] = $this->getAttributeAndLocale($key);
 
         if ($this->isTranslationAttribute($attribute)) {
             if ($this->getTranslation($locale) === null) {
