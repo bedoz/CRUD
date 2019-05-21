@@ -50,7 +50,7 @@
 		        @foreach ($crud->columns as $column)
 		            <tr>
 		                <td>
-		                    <strong>{{ $column['label'] }}</strong>
+		                    <strong>{!! $column['label'] !!}</strong>
 		                </td>
                         <td>
 							@if (!isset($column['type']))

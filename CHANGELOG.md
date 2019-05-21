@@ -20,6 +20,83 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.6.21] - 2019-05-16
+
+### Fixed
+- issue #1889 - a space was present in some columns after the text, which was inconvenient for copy-pasting;
+
+## [3.6.20] - 2019-05-09
+
+### Added
+- fixes #1591 - added base64 and disk support to ```image``` column type;
+
+### Fixed
+- unit tests failed because ```is_countable()``` helper cannot be included in unit tests;
+
+
+## [3.6.19] - 2019-05-09
+
+### Added
+- merged #1884 - added ```is_countable()``` helper;
+
+### Fixed
+- fixed #1861 merged #1882 - ```count()``` was run on non-countable object;
+
+
+## [3.6.18] - 2019-05-08
+
+### Fixed
+- #1789 - ```select_and_order``` javascript error fixed;
+
+
+## [3.6.17] - 2019-05-07
+
+### Fixed
+- fixes #1824; merges #1880 - inside the ListEntries operation, ```visibleInModal``` did not work for columns that were NOT ```visibleInTable```;
+- fixes #1806 - visible export and column visiblity buttons when using fixed adminlte layout;
+
+## [3.6.16] - 2019-04-25
+
+### Fixed
+- merged #1871 fixes #1808 - unicode characters got escaped in translated models; no mas;
+
+
+## [3.6.15] - 2019-04-25
+
+### Fixed
+- merged #1868 - error when opening revisions timeline because it was still using jessengers/date;
+
+
+## [3.6.14] - 2019-04-25
+
+### Fixed
+- merged #1858 - ```password``` field type now has ```autocomplete = off``` by default; since that's better in most use cases;
+- fixes #1343 - hides the Remove Filters button when all filters are cleared;
+- merged #1863 fixes #1862 - makes ```image```, ```base64_image``` and ```checklist_dependency``` fields look fine on XS displays;
+
+## [3.6.13] - 2019-04-10
+
+### Fixed
+- merged #1803 - ```enum``` field type uses one less query to determine enum options;
+- #1771 - ```datetime_picker``` field can be manually edited;
+- merged #1764 fixes #1763 - persistent table local storage key is now the route instead of the plural name of the entity, because sometimes there can be two entities with the same plural name (or two cruds for one entity) so that is not unique;
+- merged #1778 - don't escape labels in Show view;
+
+
+## [3.6.12] - 2019-04-10
+
+### Added
+- merged #1850 - added ```dec_point``` and ```thousands_sep``` to ```number``` column type; parameters and defaults are now the same as PHP's number_format() method: https://www.php.net/manual/en/function.number-format.php
+
+
+## [3.6.11] - 2019-04-09
+
+### Fixed
+- #1851 - cdn.rawgit.com will stop working in October 2019; switched to a different CDN;
+- merged #1822 - vertical tabs can be enabled and switched with one line instead of two;
+- #1829 - when the item is not deleted, a success bubble is no longer shown, but a warning;
+
+
 ## [3.6.10] - 2019-04-01
 
 ### Fixed
