@@ -20,6 +20,25 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.6.23] - 2019-07-09
+
+### Fixed
+- issue #1922 - merges #1923 - list view details modal is now prettier - table has table and table-hovered classes;
+
+
+## [3.6.22] - 2019-07-03
+
+### Added
+- merged #1899 - Czech translation, thanks to [Aleš Zatloukal](https://github.com/aleszatloukal);
+- merged #1891 - support for MongoDB, thanks to [andrycs](https://github.com/andrycs);
+- merged #1911 - markdown column type;
+- merged #1908 - added options to tinymce field type;
+
+### Fixed
+- merged #1917 - typo in image column type;
+- merged #1901 - pushed checklist_dependency var into crud_fields_scripts stack;
+
+
 ## [3.6.21] - 2019-05-16
 
 ### Fixed
