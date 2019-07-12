@@ -1,8 +1,8 @@
 <?php
 
-namespace Backpack\CRUD\ModelTraits\DimsavTranslatable;
+namespace Backpack\CRUD\ModelTraits\AstrotomicTranslatable;
 
-use Dimsav\Translatable\Translatable as OriginalHasTranslations;
+use Astrotomic\Translatable\Translatable as OriginalHasTranslations;
 
 trait HasTranslations
 {
@@ -15,7 +15,7 @@ trait HasTranslations
 
     /*
     |--------------------------------------------------------------------------
-    |                 DIMSAV/LARAVEL-TRANSLATABLE OVERWRITES
+    |                 ASTROTOMIC/LARAVEL-TRANSLATABLE OVERWRITES
     |--------------------------------------------------------------------------
     */
 

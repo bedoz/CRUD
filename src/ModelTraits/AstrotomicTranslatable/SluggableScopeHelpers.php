@@ -1,6 +1,6 @@
 <?php
 
-namespace Backpack\CRUD\ModelTraits\DimsavTranslatable;
+namespace Backpack\CRUD\ModelTraits\AstrotomicTranslatable;
 
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers as OriginalSluggableScopeHelpers;

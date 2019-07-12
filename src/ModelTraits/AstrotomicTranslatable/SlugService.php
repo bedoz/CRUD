@@ -1,6 +1,6 @@
 <?php
 
-namespace Backpack\CRUD\ModelTraits\DimsavTranslatable;
+namespace Backpack\CRUD\ModelTraits\AstrotomicTranslatable;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,7 +29,7 @@ class SlugService extends \Cviebrock\EloquentSluggable\Services\SlugService
 
             $slug = $this->buildSlug($attribute, $config, $force);
 
-            // customized for Backpack using DimsavTranslatable
+            // customized for Backpack using AstrotomicTranslatable
             // save the attribute as a JSON
             $this->model->setAttribute($attribute, $slug);
 
