@@ -174,7 +174,7 @@ trait HasTranslations
      */
     public function getAvailableLocales()
     {
-        $locales = $this->getLocales();
+        $locales = $this->getLocalesHelper()->all();
         $locales_ok = [];
         foreach ($locales as $k => $l) {
             $locales_ok[$l] = $l;
