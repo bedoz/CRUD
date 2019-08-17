@@ -95,7 +95,7 @@ trait SaveActions
                     $redirectUrl .= '?locale='.\Request::input('locale');
                 }
                 if (\Request::has('current_tab')) {
-                    $redirectUrl = $redirectUrl.'#'.\Request::get('current_tab');
+                    $redirectUrl .= '#'.\Request::get('current_tab');
                 }
                 break;
             case 'save_and_back':
