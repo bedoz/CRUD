@@ -20,6 +20,37 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.6.27] - 2019-08-17
+
+### Fixed
+- merged #1634 - using closest instead of parents for datetime_picker field type;
+- merged #1594 - fixes ```upload_multiple``` field error when casting to array;
+
+## [3.6.26] - 2019-08-17
+
+### Added
+- merged #1795 - adds a ```removeButtons()``` method to the CRUD API, which allows developers to remove multiple buttons in one go;
+- merged #1965 - adds a ```multiple``` attribute for ```select2_multiple``` field, which allows developers to force the user to only select one item, even though the relationship is n-n;
+
+### Fixed
+- merged #1964, fixes #1836 - allows carbon immutable dates;
+
+
+## [3.6.25] - 2019-08-17
+
+### Added
+- merged #1952 - ```json``` column type;
+
+### Fixed
+- merged #1906 fixes #1902 - save_and_back url redirected to the default language, instead of the current editing locale;
+- merged #1896 - default button view namespace is now ```crud::buttons```;
+- merged #1921 - table column type can now output both arrays and objects;
+- merged #1852 - syncPivot() method now allows pivot data;
+- merged #1954 - semicolons on date_picker field js;
+- merges #1962 fixes #1910 - allows keyboard use on date_picker field type;
+- merges #1945 - select_and_order did not have its default values after 2 saves;
+
+
 ## [3.6.24] - 2019-07-23
 
 ### Added
