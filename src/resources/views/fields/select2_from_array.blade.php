@@ -71,6 +71,10 @@
                 {
                     $(obj).select2({
                         theme: "bootstrap"
+                    }).on('select2:unselect', function(e) {
+                        if ($(this).attr('multiple') && $(this).val().length == 0) {
+                            $(this).val(null).trigger('change');
+                        }
                     });
                 }
             });

@@ -20,11 +20,43 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 - Nothing
 -----------
 
+## [3.6.31] - 2019-09-01
+
+### Fixed
+- fixes #2010 - number column should show null when null, not zero;
+
+
+## [3.6.30] - 2019-09-01
+
+### Fixed
+- fixes #1982 merged #1983 - AutoSet uses model connection instead of default connection;
+- French language fixes;
+- fixes #2006 merged #2007 - Create/Update forms not opening the correct tab when Saving and Editing an item multiple times;
+
+
+## [3.6.29] - 2019-08-23
+
+### Fixed
+- fixes #1972 - removed var_dump from select2_from_array field;
+
+
+## [3.6.28] - 2019-08-20
+
+### Added
+- merged #1750 - localization for select2 filters;
+
+### Fixed
+- fixed #1762 - uploaded have unique file names even if the same file is submitted twice in the same form;
+- fixed #1652 - small ```table``` field and ```table``` column bugs when inserting empty last rows;
+- adresses #1224 - ```select2_from_array``` with multiple now shows empty option when all are unselected;
+
+
 ## [3.6.27] - 2019-08-17
 
 ### Fixed
 - merged #1634 - using closest instead of parents for datetime_picker field type;
 - merged #1594 - fixes ```upload_multiple``` field error when casting to array;
+
 
 ## [3.6.26] - 2019-08-17
 
