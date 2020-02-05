@@ -22,7 +22,7 @@ trait HasTranslations
     public function isTranslation($key){
         return $this->isTranslationAttribute($key);
     }
-    
+
     public function getAttributeValue($key)
     {
         if (! $this->isTranslation($key)) {
@@ -38,10 +38,10 @@ trait HasTranslations
 
         return $translation;
     }
-    
+
     public function getAttribute($key) {
         list($attribute, $locale) = $this->getAttributeAndLocale($key);
-        
+
         if ($this->isTranslationAttribute($attribute)) {
             if ($this->getTranslation($locale) === null) {
                 return ""; //$this->getAttributeValue($attribute);
@@ -61,16 +61,16 @@ trait HasTranslations
 
         return parent::getAttribute($key);
     }
-    
+
     /*public function getAttributes(){
         return $this->translatedAttributes;
     }*/
-    
+
     public function orderTranslationBy($query, $field, $order){
         $query = $this->addTranslationJoin($query);
         return $query->orderBy('t.' . $field, $order);
     }
-    
+
     public function addTranslationJoin($query){
         $table = $this->getTable();
         $ttable = $this->getTranslationsTable();
@@ -82,7 +82,7 @@ trait HasTranslations
             }
         }
         return $query->leftJoin($ttable . ' as t', function ($join) use ($table) {
-            $join->on($table . '.id', '=', 't.'.$table.'_id')
+            $join->on($table . '.id', '=', 't.'.$this->getRelationKey())
                 ->where('t.locale', '=', $this->getLocale());
         })
         ->select($table.'.*')
@@ -130,7 +130,7 @@ trait HasTranslations
         }
 
         $attributes = array_except($attributes, ['locale']);
-        
+
         // do the actual saving
         foreach ($attributes as $attribute => $value) {
             $this->setAttribute($attribute, $value);
@@ -213,7 +213,7 @@ trait HasTranslations
 
                 if ($translation_locale) {
                     $item = parent::__call($method, $parameters);
-                    
+
                     if ($item) {
                         try {
                             $item->setLocale($translation_locale);
