@@ -88,7 +88,7 @@ trait HasTranslations
         }
 
         return $query->leftJoin($ttable.' as t', function ($join) use ($table) {
-            $join->on($table.'.id', '=', 't.'.$table.'_id')
+            $join->on($table.'.id', '=', 't.'.$this->getRelationKey())
                 ->where('t.locale', '=', $this->getLocale());
         })
         ->select($table.'.*')
